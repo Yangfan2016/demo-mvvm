@@ -1,7 +1,5 @@
 // vue-mvvm
 
-let target = null;
-
 class Dep {
     constructor() {
         this.subs = [];
