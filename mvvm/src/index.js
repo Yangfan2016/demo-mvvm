@@ -19,9 +19,9 @@ class Dep {
 
 
 function watcher(fn) {
-    target = fn;
-    target();
-    target = null;
+    Dep.target = fn;
+    Dep.target();
+    Dep.target = null;
 }
 
 
@@ -31,14 +31,14 @@ function observe(data) {
         let val = data[key];
         Object.defineProperty(data, key, {
             get() {
-                target && dep.depend(target);
+                Dep.target && dep.depend(Dep.target);
                 return val;
             },
             set(v) {
                 if (val !== v) {
                     val = v;
                 }
-                dep.notify(target);
+                dep.notify(Dep.target);
             }
         });
     }
